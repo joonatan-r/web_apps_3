@@ -11,8 +11,10 @@ const turnTeller = document.getElementById("turn_teller");
 const turnTimer = document.getElementById("turn_timer");
 const bar = document.getElementById("bar");
 let turn = "x";
-let time = 1000;
+let time = 10;
 let gameOver = false;
+turnTimer.innerText = "Time left: " + time;
+bar.style.width = time * 10 + "%";
 
 function checkRow(row) {
   for (let i = 1; i < row.length; i++) {
@@ -85,18 +87,26 @@ function checkForWin() {
 function changeTurn() {
   turn = turn === "x" ? "o" : "x";
   turnTeller.innerText = "Turn of player " + turnToPlayer[turn];
-  time = 1000;
+
+  // reset timer
+  clearInterval(interval);
+  time = 10;
+  interval = setInterval(timer, 1000);
+  turnTimer.innerText = "Time left: " + time;
+  bar.style.width = time * 10 + "%";
 }
 
-const timer = setInterval(() => {
+function timer() {
   if (time <= 1) {
     changeTurn();
   } else {
     time--;
   }
-  turnTimer.innerText = "Time left: " + Math.round(time / 100);
-  bar.style.width = time / 10 + "%";
-}, 10);
+  turnTimer.innerText = "Time left: " + time;
+  bar.style.width = time * 10 + "%";
+}
+
+let interval = setInterval(timer, 1000);
 
 for (let i = 0; i < BOARD_SIZE; i++) {
   const tr = document.createElement("tr");
@@ -116,7 +126,7 @@ for (let i = 0; i < BOARD_SIZE; i++) {
 
       if (gameOver) {
         alert("Player " + turnToPlayer[turn] + " won!");
-        clearInterval(timer);
+        clearInterval(interval);
       } else {
         changeTurn();
       }

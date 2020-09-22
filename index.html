@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <title>Tic tac toe</title>
   </head>
 
@@ -8,9 +12,10 @@
     <table id="board"></table>
     <p id="turn_teller">Turn of player 1</p>
     <p id="turn_timer"></p>
-    <div id="bar_container">
-      <div id="bar"></div>
+    <div class="progress">
+      <div id="bar" class="determinate"></div>
     </div>
     <script src="src/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
