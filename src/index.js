@@ -6,7 +6,7 @@ const turnToPlayer = {
   x: 1,
   o: 2
 };
-const boardElement = document.getElementById("board");
+const container = document.getElementById("container");
 const turnTeller = document.getElementById("turn_teller");
 const turnTimer = document.getElementById("turn_timer");
 const bar = document.getElementById("bar");
@@ -109,18 +109,23 @@ function timer() {
 let interval = setInterval(timer, 1000);
 
 for (let i = 0; i < BOARD_SIZE; i++) {
-  const tr = document.createElement("tr");
-  boardElement.appendChild(tr);
+  const row = document.createElement("div");
+  row.setAttribute("class", "row");
+  container.appendChild(row);
   board.push([]);
 
   for (let j = 0; j < BOARD_SIZE; j++) {
-    const td = document.createElement("td");
-    td.onclick = () => {
+    board[i].push([]);
+    board[i][j] = "";
+
+    const col = document.createElement("div");
+    col.setAttribute("class", "col center");
+    col.onclick = () => {
       // if cell taken or game over do nothing
       if (board[i][j] !== "" || gameOver) return;
 
-      td.innerHTML = turn;
-      td.setAttribute("class", turn);
+      col.innerHTML = turn;
+      col.classList.add(turn);
       board[i][j] = turn;
       gameOver = checkForWin();
 
@@ -131,8 +136,6 @@ for (let i = 0; i < BOARD_SIZE; i++) {
         changeTurn();
       }
     };
-    tr.appendChild(td);
-    board[i].push([]);
-    board[i][j] = "";
+    row.appendChild(col);
   }
 }

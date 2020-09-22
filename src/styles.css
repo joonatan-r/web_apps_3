@@ -2,25 +2,6 @@ body {
   font-family: sans-serif;
 }
 
-table {
-  height: 100%;
-}
-
-table,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-td {
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  vertical-align: middle;
-  font-family: Helvetica;
-  font-size: 30px;
-}
-
 .x {
   background-color: rgb(124, 252, 0);
 }
@@ -29,10 +10,25 @@ td {
   background-color: rgb(250, 128, 114);
 }
 
+.container {
+  margin: 20px;
+  height: 100%;
+  width: 100%;
+}
+
 .progress {
   width: 400px;
 }
 
-.determinate {
-  width: 400px;
+.row {
+  height: 60px;
+  margin: 0;
+}
+
+.col {
+  border: 1px solid black;
+  height: 100%;
+  width: 60px;
+  font-family: Helvetica;
+  font-size: 30px;
 }
